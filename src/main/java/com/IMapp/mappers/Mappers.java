@@ -1,4 +1,6 @@
-package com.IMapp;
+package com.IMapp.mappers;
+
+import com.sun.corba.se.spi.ior.ObjectKey;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -120,4 +122,55 @@ public class Mappers {
         }
         return nestedMap;
     }
+
+    /**
+     * Return  the [names,values] ([String[],Object[]]) for the key/value of the map
+     * Note: keys are converted toString
+     * */
+    static final public NamesVal namesValOf(Map map){
+        if (map == null){
+            return new NamesVal(new String[0],new Object[0]);
+        }
+
+        Object[] keys = map.keySet().toArray();
+        String[] names = new String[keys.length];
+        Object[] values = new Object[keys.length];
+
+        for (int i = 0; i < values.length; i++){
+            Object key = keys[i];
+            names[i] = keys[i].toString();
+            values[i] = map.get(keys[i]);
+        }
+        return new NamesVal(names,values);
+    }
+
+
+    /**
+    * Nested values
+    * **/
+    static final public Object nestedVal(Map map,String path){
+        Object val = null;
+
+        String[] names = path.split("\\.");
+        Map map1 = map;
+        int lastIndex = names.length - 1;
+
+        for (int i = 0; i < names.length; i++){
+            String name = names[i];
+            Object value = map1.get(name);
+            if (i == lastIndex){
+                val = value;
+                break;
+            }else{
+                if (value instanceof Map){
+                    map1 = (Map)value;
+                }else{
+                    break;
+                }
+            }
+        }
+        return val;
+    }
+    
+    
 }
