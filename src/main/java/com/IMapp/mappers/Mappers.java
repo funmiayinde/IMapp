@@ -27,8 +27,7 @@ public class Mappers {
      * be set to null for this property
      ****/
     static final public Map mapOf(Object... obj) {
-        HashMap<Object, Object> map = new HashMap<Object, Object>();
-
+        HashMap<Object, Object> map = new HashMap<>();
         for (int i = 0; i < obj.length; i += 2) {
             Object key = obj[i];
             if (i + 1 < obj.length) {

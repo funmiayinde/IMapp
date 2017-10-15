@@ -9,5 +9,5 @@ package com.IMapp.converter;
 @FunctionalInterface
 public interface ClassTypeConverter<K,V> {
 
-    V convert(K instance);
+    public V convert(K instance);
 }

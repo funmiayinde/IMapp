@@ -25,7 +25,7 @@ public class ConvertersRepo {
         repoMap = new HashMap<>();
     }
 
-    void init() {
+   public void init() {
         addClassTypeConverter(String.class, Long.class, Long::valueOf);
         addClassTypeConverter(String.class, Long.TYPE, Long::valueOf);
         addClassTypeConverter(String.class, Integer.class, Integer::valueOf);
@@ -79,7 +79,7 @@ public class ConvertersRepo {
     }
 
 
-    Map<PairMapper<Class<?>,Class<?>>,ClassTypeConverter<?,?>> getRepoMap(){
+    public Map<PairMapper<Class<?>,Class<?>>,ClassTypeConverter<?,?>> getRepoMap(){
         return repoMap;
     }
 

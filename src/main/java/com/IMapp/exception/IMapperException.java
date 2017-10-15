@@ -32,4 +32,6 @@ public class IMapperException extends RuntimeException{
                 sourceClass.getName(),targetClass.getName());
         return new IMapperException(Error.CANNOT_FIND_HELPER,msg);
     }
+
+
 }
